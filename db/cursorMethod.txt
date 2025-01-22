@@ -1,0 +1,33 @@
+MongoDB cursor methods:
+
+### **Basic Cursor Methods**
+1. `next()` – Retrieve the next document in the cursor.  
+2. `hasNext()` – Check if there are more documents in the cursor.  
+3. `forEach()` – Iterate over all documents in the cursor.  
+4. `toArray()` – Convert all documents in the cursor to an array.  
+
+---
+
+### **Query Modifiers**
+5. `sort()` – Sort the results of a query.  
+6. `limit()` – Limit the number of documents returned.  
+7. `skip()` – Skip a specified number of documents.  
+
+---
+
+### **Projection and Transformation**
+8. `map()` – Apply a function to each document and transform the results.  
+9. `project()` – Select specific fields to include or exclude.  
+
+---
+
+### **Cursor Management**
+10. `close()` – Close the cursor.  
+11. `isClosed()` – Check if the cursor is closed.  
+
+---
+
+### **Cursor Information**
+12. `count()` – Return the total number of matching documents (deprecated in modern versions, use `estimatedDocumentCount()` or `countDocuments()` instead).  
+13. `size()` – Return the number of documents returned by the cursor without applying `limit()`.  
+14. `explain()` – Get query execution details.  

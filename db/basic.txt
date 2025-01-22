@@ -1,0 +1,62 @@
+## run mongo on shell 
+    ~ open terminal and type (mongosh)
+
+## show how many collections of database in my database
+    ~ type (show dbs)
+
+## create a database and switch on it 
+    ~ type (use <database name>)
+
+## get the current database name 
+    ~ type (db) 
+
+## create collections in database [in single db  allows to create multiple collections]
+    ~ type (db.createCollection('<collection name>'))
+
+## show how many collections are in database
+    ~ type(show collections)
+
+## delete a database 
+    ~ type(<database name>.drop())
+
+## delete  a collection 
+    ~ type(db.<collection name>.drop())
+
+========== CURD operation with mongoDB ==========
+
+!! create (C)
+## insert a single document in collection
+    ~ type(db.<collection name>.insertOne({document}))
+
+## insert multiple document in collection
+    ~ type(db.<collection name>.insertMany([ {document}, {document}, {document}]))
+
+!! read (R)
+## read only one document form collection
+    ~ type(db.<collection name>.findOne({query},{projection : it will hide the field (0,1)})) // show only one document
+
+## read all document from collection
+    ~ type(db.<collection name>.find({query},{projection : it will hide the field(0,1)})) //shows all the document form collection
+
+!! update (U)
+
+## update only one document form collection
+    ~ type( db.<collection name>.updateOne({make : 'BMW'}, {$set : {isAvailable : true}}))
+
+## update multiple document form collection
+    ~ type( db.<collection name>.updateMany({make : 'BMW'}, {$set : {isAvailable : true}}))
+    
+* if the data is in array  and went to update single value
+    ~ type( db.<collection name>.updateMany({make : 'BMW'}, {$push : {data : "update data"}}))
+
+* if the data is in array  and went to update  multiple value
+    ~ type( db.<collection name>.updateMany({make : 'BMW'}, {$push : {data : $each : ['data','data']}}))
+
+
+!! delete (D)
+
+## delete only one document form collection
+    ~ type(db.<collection name>.deleteOne({query}))
+    
+## delete multiple document form collection
+    ~ type(db.<collection name>.deleteMany({query}))

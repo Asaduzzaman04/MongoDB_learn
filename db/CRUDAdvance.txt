@@ -1,0 +1,63 @@
+!! create data
+## insert a single document in collection
+    ~ type(db.<collection name>.insertOne({document}))
+
+## insert multiple document in collection
+    ~ type(db.<collection name>.insertMany([ {document}, {document}, {document}]))
+
+!! read data
+
+## read data with advance query
+    ~ type(db.<collection name>.find({year : {$gt : 2020}})) 
+    ~ type(db.<collection name>.find({$or: [{ make: "Toyota" },{ price: { $gt: 40000 }}]});) 
+
+    ** some advance querys for find data **
+    {
+        Logical Operators Query ($and, $or, $not)
+        Array Operators Query ($all, $in)
+        Query on Nested Documents
+        Regex Query
+        Projection with Queries
+        Comparison Operators Query ($gte, $lte)
+        Element Query ($exists, $type)
+        Text Search Query ($text)
+        Aggregation Query
+        Sorting and Limiting Results (sort(), limit())
+    }
+
+
+!! update data 
+
+## update data with advance query
+    ~ type (db.<collection name>.updateOne({ name: "Toyota" },{$set: { price: 40000, status: "available", lastUpdated: new Date() }});)
+
+    ** some advance querys for find data **
+    {
+        $set: Add or update specific fields.
+        $unset: Remove specific fields from documents.
+        $rename: Rename a field in documents.
+        $inc: Increment or decrement numeric fields.
+        $mul: Multiply numeric fields by a value.
+        $min: Update only if new value smaller.
+        $max: Update only if new value larger.
+        $setOnInsert: Set fields during upsert operations.
+        $push: Add elements to an array.
+        $pop: Remove first/last array element.
+        $pull: Remove array elements matching condition.
+        $pullAll: Remove specific array elements.
+        $addToSet: Add unique elements to an array.
+        $each: Add multiple elements to an array.
+        $slice: Limit array size when updating.
+        $sort: Sort array elements when adding.
+        $position: Specify array position for insertion.
+        $bit: Perform bitwise operations on numbers.
+    }
+
+## delete data with advance query
+
+    ** some advance querys for delete data **
+    {
+        findOneAndDelete(): Deletes and returns the document.
+            findOneAndUpdate(): Find, update, and optionally delete.
+            delete(): Deletes document using legacy method.
+    }

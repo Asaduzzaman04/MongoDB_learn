@@ -1,0 +1,17 @@
+MongoDB data types : {
+    String,
+    Number (Integer, Double, Decimal128),
+    Boolean,
+    Object,
+    Array,
+    ObjectId,
+    Date,   
+    Null,
+    Regular Expression,
+    Binary Data,
+    Code,
+    Symbol,
+    Timestamp,
+    MinKey,
+    MaxKey,
+}

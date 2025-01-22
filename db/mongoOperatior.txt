@@ -1,0 +1,76 @@
+MongoDB operators:
+
+### **Comparison Operators**
+1. `$eq`  
+2. `$ne`  
+3. `$gt`  
+4. `$gte`  
+5. `$lt`  
+6. `$lte`  
+7. `$in`  
+8. `$nin`  
+
+### **Logical Operators**
+9. `$and`  
+10. `$or`  
+11. `$not`  
+12. `$nor`  
+
+### **Element Operators**
+13. `$exists`  
+14. `$type`  
+
+### **Evaluation Operators**
+15. `$expr`  
+16. `$jsonSchema`  
+17. `$mod`  
+18. `$regex`  
+19. `$text`  
+20. `$where`  
+
+### **Array Operators**
+21. `$all`  
+22. `$elemMatch`  
+23. `$size`  
+
+### **Bitwise Operators**
+24. `$bitsAllClear`  
+25. `$bitsAllSet`  
+26. `$bitsAnyClear`  
+27. `$bitsAnySet`  
+
+### **Update Operators**
+28. `$set`  
+29. `$unset`  
+30. `$rename`  
+31. `$inc`  
+32. `$mul`  
+33. `$min`  
+34. `$max`  
+35. `$setOnInsert`  
+36. `$push`  
+37. `$pop`  
+38. `$pull`  
+39. `$pullAll`  
+40. `$addToSet`  
+41. `$each`  
+42. `$slice`  
+43. `$sort`  
+44. `$position`  
+45. `$bit`  
+
+### **Aggregation Pipeline Operators**
+46. `$match`  
+47. `$project`  
+48. `$group`  
+49. `$sort`  
+50. `$limit`  
+51. `$skip`  
+52. `$unwind`  
+53. `$lookup`  
+54. `$facet`  
+55. `$bucket`  
+56. `$addFields`  
+57. `$replaceRoot`  
+58. `$merge`  
+
