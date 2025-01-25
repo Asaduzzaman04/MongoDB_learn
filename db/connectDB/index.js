@@ -17,7 +17,7 @@ const initializeDb = async () => {
     const client = new MongoClient(url);
     await client.connect();
     console.log('Connected to MongoDB');
-    db = client.db('data'); 
+    db = client.db('data');
   } catch (error) {
     console.error('Failed to connect to MongoDB:', error);
     process.exit(1); // Exit if the connection fails
@@ -42,7 +42,7 @@ app.get('/', async (req, res) => {
     console.error('Error fetching cars:', error);
     res.status(500).json({
       message: 'Failed to fetch cars',
-      error: error.message,
+      error: error.message
     });
   }
 });
@@ -57,11 +57,30 @@ app.get('/api/person', async (req, res) => {
     console.error('Error fetching person data:', error);
     res.status(500).json({
       message: 'Failed to fetch person data',
-      error: error.message,
+      error: error.message
     });
   }
 });
-
+//find useing query params
+app.get('/api/person/v1/:age', async (req, res) => {
+  const {
+    params: { age }
+  } = req;
+  try {
+    const ageData = db.collection('person');
+    const totalData = await ageData
+      .find({ age: { $eq: Number(age) }, tags: { $size: 2} })
+      .sort({ favoriteFruit: 1 })
+      .toArray();
+    res.status(200).json(totalData);
+  } catch (error) {
+    console.log('Error fetchig preson Data : ', error);
+    res.status(500).json({
+      massage: 'Failed to fetch person Data',
+      error: error.massage
+    });
+  }
+});
 // Route to get count of person documents
 app.get('/api/person/count', async (req, res) => {
   try {
@@ -71,7 +90,7 @@ app.get('/api/person/count', async (req, res) => {
     console.error('Error counting person documents:', error);
     res.status(500).json({
       message: 'Failed to count person documents',
-      error: error.message,
+      error: error.message
     });
   }
 });
