@@ -1,5 +1,5 @@
 import express from 'express';
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 import dotenv from 'dotenv';
 
 // Load environment variables
@@ -69,7 +69,7 @@ app.get('/api/person/v1/:age', async (req, res) => {
   try {
     const ageData = db.collection('person');
     const totalData = await ageData
-      .find({ age: { $eq: Number(age) }, tags: { $size: 2} })
+      .find({ age: { $eq: Number(age) }, tags: { $size: 2 } })
       .sort({ favoriteFruit: 1 })
       .toArray();
     res.status(200).json(totalData);
@@ -90,6 +90,29 @@ app.get('/api/person/count', async (req, res) => {
     console.error('Error counting person documents:', error);
     res.status(500).json({
       message: 'Failed to count person documents',
+      error: error.message
+    });
+  }
+});
+//update the data
+app.put('/api/person/v2/:company', async (req, res) => {
+  const { company } = req.params;
+  console.log('Updating document with company title:', company);
+  try {
+    const getCollection = db.collection('person');
+    const result = await getCollection.updateOne(
+      { 'company.title': { $regex: `^${company}$`, $options: 'i' } },
+      { $set: { isActive: true } }
+    );
+    if (result.modifiedCount > 0) {
+      res.status(200).send({ message: 'Field updated successfully' });
+    } else {
+      res.status(404).send({ message: 'Document not found' });
+    }
+  } catch (error) {
+    console.error('Error updating user data:', error);
+    res.status(500).json({
+      message: 'Failed to update user data',
       error: error.message
     });
   }
