@@ -118,6 +118,29 @@ app.put('/api/person/v2/:company', async (req, res) => {
   }
 });
 
+//delete the data
+app.delete('/api/person/v3',async (req,res) =>{
+  const {index} = req.query;
+  
+  try {
+    const userCollecton = db.collection('person')
+    const deleteData = await userCollecton.deleteOne({index : Number(index)})
+    console.log(deleteData)
+    if(deleteData.acknowledged > 0){
+      res.status(200).send({massage : 'data deleted successfully'})
+    }else{
+      res.status(404).send({ message: 'Document not found' });
+    
+    }
+    
+  } catch (error) {
+    console.log('Error to delte the Data', error)
+    res.status(500).json({
+      massage : 'Failed to Delete the user Data',
+      error : error.massage 
+    })
+  }
+})
 // Start the server and initialize the database
 app.listen(port, async () => {
   await initializeDb();
