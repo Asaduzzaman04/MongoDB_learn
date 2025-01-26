@@ -1,3 +1,60 @@
 !! MongoDB Aggregation
+[
+  { "name": "Asad", "score": 85, "subject": "Math" },
+  { "name": "Jitu", "score": 90, "subject": "Math" },
+  { "name": "Rahim", "score": 78, "subject": "English" },
+  { "name": "Karim", "score": 88, "subject": "English" }
+]
 
-## Aggregation grouping 
+## Aggregation match 
+
+db.students.aggregate([
+  { $match: { subject: "Math" } }
+])
+
+output => 
+[
+  { "name": "Asad", "score": 85, "subject": "Math" },
+  { "name": "Jitu", "score": 90, "subject": "Math" }
+]
+
+## Aggregation grouping
+
+ db.students.aggregate([
+  { $group: { _id: "$subject", avgScore: { $avg: "$score" } } }
+])
+
+output => 
+[
+  { "_id": "Math", "avgScore": 87.5 },
+  { "_id": "English", "avgScore": 83 }
+]
+
+## Aggregation project
+
+db.students.aggregate([
+  { $project: { name: 1, score: 1, _id: 0 } }
+])
+
+output => 
+[
+  { "name": "Asad", "score": 85 },
+  { "name": "Jitu", "score": 90 },
+  { "name": "Rahim", "score": 78 },
+  { "name": "Karim", "score": 88 }
+]
+
+## Aggregation sort
+
+db.students.aggregate([
+  { $sort: { score: -1 } }
+])
+
+
+output => 
+[
+  { "name": "Jitu", "score": 90 },
+  { "name": "Karim", "score": 88 },
+  { "name": "Asad", "score": 85 },
+  { "name": "Rahim", "score": 78 }
+]

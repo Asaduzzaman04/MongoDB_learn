@@ -125,7 +125,6 @@ app.delete('/api/person/v3',async (req,res) =>{
   try {
     const userCollecton = db.collection('person')
     const deleteData = await userCollecton.deleteOne({index : Number(index)})
-    console.log(deleteData)
     if(deleteData.acknowledged > 0){
       res.status(200).send({massage : 'data deleted successfully'})
     }else{
